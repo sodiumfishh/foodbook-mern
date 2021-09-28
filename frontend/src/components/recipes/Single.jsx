@@ -6,7 +6,7 @@ export default function Single() {
 	const [single, updateSingle] = useState(null)
 	const {id} = useParams()
 	useEffect(() => {
-		axios.get(`http://localhost:5000/api/recipes/${id}`)
+		axios.get(`/api/recipes/${id}`)
 			.then(res => updateSingle(res.data))
 			.catch(err => console.log(err))
 	}, [])
@@ -14,7 +14,7 @@ export default function Single() {
 	function handleDelete() {
 		const userConfirmation = window.confirm("Are you sure you want to delete this recipe?")
 		if(userConfirmation) {
-			axios.delete(`http://localhost:5000/api/recipes/${id}`)
+			axios.delete(`/api/recipes/${id}`)
 				.then(res => {
 					window.alert("Deleted Successfully")
 					window.location = "/"

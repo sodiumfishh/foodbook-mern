@@ -6,7 +6,7 @@ function Recipes() {
 	const [recipes, setRecipes] = useState([])
 
 	useEffect(() => {
-		axios.get("http://localhost:5000/api/recipes").then(res => setRecipes(res.data))
+		axios.get("/api/recipes").then(res => setRecipes(res.data))
 	}, [])
 
 	return(

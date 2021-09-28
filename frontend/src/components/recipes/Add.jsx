@@ -71,7 +71,7 @@ function Add() {
 		formData.append("tags", formValues.tags)
 		formData.append("ingredients", formValues.ingredients)
 
-		axios.post("http://localhost:5000/api/recipes", formData)
+		axios.post("/api/recipes", formData)
 			.then(res => {
 				if(res.status === 201) {
 					window.location = "/"
