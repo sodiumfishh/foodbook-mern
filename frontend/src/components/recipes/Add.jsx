@@ -40,7 +40,6 @@ function Add() {
 				...formValues,
 				[name]: value.split(",")
 			})
-			console.log(value.split(","))
 		}else {
 			setFormValues({
 				...formValues,
@@ -62,7 +61,6 @@ function Add() {
 	// ------------ HANDLE SUBMIT FUNC ------------------ //
 	function handleSubmit(e) {
 		e.preventDefault()
-		console.log(formValues.ingredients)
 		let formData = new FormData()
 		formData.append("file", formValues.file)
 		formData.append("name", formValues.name)

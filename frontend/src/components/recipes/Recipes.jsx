@@ -9,6 +9,18 @@ function Recipes() {
 		axios.get("/api/recipes").then(res => setRecipes(res.data))
 	}, [])
 
+	function handleDelete(e) {
+		const id = e.target.id
+		const userConfirmation = window.confirm("Are you sure you want to delete this recipe?")
+		if(userConfirmation) {
+			axios.delete(`/api/recipes/${id}`)
+				.then(res => {
+					window.alert("Deleted Successfully")
+					window.location = "/"
+				})
+		}
+	}
+
 	return(
 		<div>
 			{
@@ -17,8 +29,8 @@ function Recipes() {
 				<div className="px-6 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
 					{
 						recipes.map(recipe => (
-							<div key={recipe._id} className="mx-auto shadow-sm px-6 py-4 w-12/12" style={{background: "#fff"}}>
-								<div className="mb-4"><img src={recipe.imgPath ? recipe.imgPath : "/uploads/no-image.jpg"} alt={recipe.name} style={{width:"200px", height:"200px", objectFit:"cover", objectPosition: "center"}} /></div>
+							<div key={recipe._id} className="mx-auto shadow-sm px-6 py-4" style={{background: "#fff"}}>
+								<div className="mb-4"><img src={recipe.imgPath ? recipe.imgPath : "/uploads/no-image.jpg"} loading="lazy" alt={recipe.name} style={{width:"200px", height:"200px", objectFit:"cover", objectPosition: "center"}} /></div>
 								<div className="pt-4">
 									<h4 className="my-2 text-gray-800 text-2xl capitalize">
 										<Link to={`/${recipe._id}`}>
@@ -36,6 +48,7 @@ function Recipes() {
 											: null
 										}
 									</ul>
+									<button id={recipe._id} className="py-2 px-6 text-gray-50 bg-red-500 rounded-md w-full hover:bg-red-600" onClick={handleDelete}>Delete Recipe</button>
 								</div>
 							</div>
 						))

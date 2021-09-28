@@ -37,7 +37,7 @@ export default function Single() {
 						<ol className="flex gap-4">
 							{
 								single.ingredients.split(",").map((ingredient, i) =>(
-									<li key={i} className="px-3 py-2 bg-red-300 text-red-700 rounded-sm capitalize">{ingredient}</li>
+									<li key={i} className="px-3 py-2 bg-gray-300 text-gray-700 rounded-sm capitalize">{ingredient}</li>
 								))
 							}
 						</ol>
