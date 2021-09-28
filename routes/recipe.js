@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
 		file = req.files.file
 		filename = `uploads/${Date.now()}_${file.name}`
 
-		file.mv(path.join('__dirname', `../../frontend/public/${filename}`), err => {
+		file.mv(path.join('__dirname', `../frontend/public/${filename}`), err => {
 			if(err) {
 				console.log(err)
 				res.status(500).send(err)
@@ -57,7 +57,7 @@ router.put("/:id", (req, res) => {
 
 	const {name, ingredients, chef} = req.body
 
-	file.mv(path.join('__dirname', `../../frontend/public/${filename}`), err => {
+	file.mv(path.join('__dirname', `../frontend/public/${filename}`), err => {
 		if(err) {
 			console.log(err)
 			res.status(500).send(err)
@@ -82,7 +82,7 @@ router.delete("/:id", (req, res) => {
 
 	Recipe.findByIdAndDelete(id).then(response => {
 		try{
-			fs.unlinkSync(path.join(__dirname, "../../frontend/public", response.imgPath))
+			fs.unlinkSync(path.join(__dirname, "../frontend/public", response.imgPath))
 		} catch(err) {
 			return res.json({msg: "Error. Try Again"})
 		}
